@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Squid Game 3</title>
+  <style>
+    body {
+      background-color: #f8c9d4;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+    img {
+      max-width: 80%;
+      height: auto;
+    }
+    h1 {
+      font-size: 2em;
+      margin-top: 20px;
+      color: #333;
+    }
+    #countdown {
+      font-size: 2em;
+      font-weight: bold;
+      margin-top: 10px;
+      color: #222;
+    }
+    #sound-button {
+      margin-top: 20px;
+      font-size: 2em;
+      padding: 10px 20px;
+      border: none;
+      background-color: #ff85a2;
+      color: white;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    #sound-button:hover {
+      background-color: #ff6e8a;
+    }
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Squid_Game_3_Logo.svg" alt="Squid Game 3 Logo">
+  <h1>Faltan para el estreno:</h1>
+  <div id="countdown">Cargando...</div>
+
+  <button id="sound-button">🔊 Activar Música</button>
+
+  <audio id="bg-music" loop>
+    <source src="https://docs.google.com/uc?export=download&id=15ceFkSramOlyF9Yfzx5jxFJ5wJOXDcwA" type="audio/mpeg">
+    Tu navegador no soporta audio HTML5.
+  </audio>
+
+  <script>
+    // Contador regresivo
+    const targetDate = new Date("2025-06-27T00:00:00").getTime();
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+        document.getElementById("countdown").innerHTML = "¡Ya se estrenó Squid Game 3!";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").innerHTML =
+        `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // Botón de sonido
+    const audio = document.getElementById("bg-music");
+    const button = document.getElementById("sound-button");
+
+    button.addEventListener("click", () => {
+      if (audio.paused) {
+        audio.play();
+        button.textContent = "🔇 Pausar Música";
+      } else {
+        audio.pause();
+        button.textContent = "🔊 Activar Música";
+      }
+    });
+  </script>
+</body>
+</html>
