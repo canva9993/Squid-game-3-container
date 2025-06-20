@@ -12,8 +12,8 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
       text-align: center;
+      padding: 20px;
     }
     img {
       max-width: 80%;
@@ -44,20 +44,33 @@
     #sound-button:hover {
       background-color: #ff6e8a;
     }
+    #gif-img {
+      margin-top: 30px;
+      max-width: 90%;
+      border-radius: 15px;
+    }
     audio {
       display: none;
     }
   </style>
 </head>
 <body>
+  <!-- Logo -->
   <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Squid_Game_3_Logo.svg" alt="Squid Game 3 Logo">
+
+  <!-- Contador -->
   <h1>Faltan para el estreno:</h1>
   <div id="countdown">Cargando...</div>
 
+  <!-- Botón de sonido -->
   <button id="sound-button">🔊 Activar Música</button>
 
+  <!-- Nuevo GIF desde Dribbble -->
+  <img id="gif-img" src="https://cdn.dribbble.com/userupload/10202845/file/original-ab5753876c64d8f1304e3a507ce4ed49.gif" alt="Squid Game Animated GIF">
+
+  <!-- Música de fondo -->
   <audio id="bg-music" loop>
-    <source src="https://docs.google.com/uc?export=download&id=15ceFkSramOlyF9Yfzx5jxFJ5wJOXDcwA" type="audio/mpeg">
+    <source src="https://files.catbox.moe/opfiyo.mp3" type="audio/mpeg">
     Tu navegador no soporta audio HTML5.
   </audio>
 
@@ -81,10 +94,11 @@
       document.getElementById("countdown").innerHTML =
         `${days}d ${hours}h ${minutes}m ${seconds}s`;
     }
+
     setInterval(updateCountdown, 1000);
     updateCountdown();
 
-    // Botón de sonido
+    // Botón de música
     const audio = document.getElementById("bg-music");
     const button = document.getElementById("sound-button");
 
